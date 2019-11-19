@@ -8,16 +8,16 @@ exemple all test : `gcc -Wall -Wextra test.c -g3 libftprintf.a && ./a.out a`
 
 to check differents option run with whose differents av[1] 
 
-- a for all tests
-- d for %d
-- s for %s
-- c for %c
-- p for %p
-- x for %x
-- X for %X
-- u for %u
-- o for %%
-- m fot mixed tests
+- `./a.out a` for all tests
+- `./a.out d` for %d
+- `./a.out s` for %s
+- `./a.out c` for %c
+- `./a.out p` for %p
+- `./a.out x` for %x
+- `./a.out X` for %X
+- `./a.out u` for %u
+- `./a.out o` for %%
+- `./a.out m` fot mixed tests
 
 you can also check your unittest with solotest.c, just modify between |...| and add some args
 
