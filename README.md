@@ -21,4 +21,4 @@ to check differents option run with whose differents av[1]
 
 you can also check your unittest with solotest.c, just modify between |...| and add some args
 
-*45/Lyon **tclaudel***
+**42/Lyon tclaudel**
