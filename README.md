@@ -2,7 +2,7 @@
 
 To use this test, clone it in your repo, compile with your libftprintf.a
 
-Default test : `gcc -Wall -Wextra test.c -g3 libftprintf.a && ./a.out
+Default test : `gcc -Wall -Wextra test.c -g3 libftprintf.a && ./a.out`
 
 options works with av1 
 
