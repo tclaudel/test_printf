@@ -4,7 +4,9 @@ To use this test, clone it in your repo, compile with your libftprintf.a
 
 exemple : `gcc -Wall -Wextra test.c -g3 libftprintf.a && ./a.out`
 
-by default, you will run classics tests, had option with av1 : `./a.out a`
+by default, you will run classics tests
+options works with av1 
+    ex : `./a.out a`
     - a for all tests
     - d for %d
     - s for %s
