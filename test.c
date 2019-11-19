@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/19 14:52:16 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/19 16:45:22 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -1131,14 +1131,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	else
 		print_error(&testko);
 
-	tmp = ft_strdup("monais monaie mauney");
 	tested++;
 	print_testing("\"|%p|\\n\", 0");
-	if (printf("printf    :\t|%p|\n", tmp) == ft_printf("ft_printf :\t|%p|\n", tmp))
+	if (printf("printf    :\t|%p|\n", "monais monaie mauney") == ft_printf("ft_printf :\t|%p|\n", "monais monaie mauney"))
 		print_ok(&testok);
 	else
 		print_error(&testko);
-	free(tmp);
+
 
 	tested++;
 	print_testing("\"|%.*s|\\n\",  -50, bonjour");
@@ -1622,6 +1621,18 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		tested++;
 		print_testing("\"|%*.0d|\\n\", 10, random");
 		if (printf("printf    :\t|%0.*d|\n", 10, nb[i]) == ft_printf("ft_printf :\t|%0.*d|\n", 10,nb[i]))
+			print_ok(&testok);
+		else
+			print_error(&testko);
+		i++;
+	}
+
+	i = 0;
+	while (i < 20)
+	{
+		tested++;
+		print_testing("\"|%*.54d|\\n\", random");
+		if (printf("printf    :\t|%.54d|\n", nb[i]) == ft_printf("ft_printf :\t|%.54d|\n", nb[i]))
 			print_ok(&testok);
 		else
 			print_error(&testko);
@@ -2514,6 +2525,13 @@ if(ft_c_in_str('c', av[1])|| ft_c_in_str('a', av[1]))
 			print_error(&testko);
 
 		tested++;
+		print_testing("\"|%-054%|\\n\"");
+		if (printf("printf    :\t|%-054%|\n") == ft_printf("ft_printf :\t|%-054%|\n"))
+			print_ok(&testok);
+		else
+			print_error(&testko);
+
+		tested++;
 		print_testing("\"|%0.0%|\\n\"");
 		if (printf("printf    :\t|%0.0%|\n") == ft_printf("ft_printf :\t|%0.0%|\n"))
 			print_ok(&testok);
@@ -2546,12 +2564,63 @@ if(ft_c_in_str('c', av[1])|| ft_c_in_str('a', av[1]))
 				print_error(&testko);
 			i++;
 		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("str :\\t%50s\\nint :\\t%*d\nline :\\t%u\\naddr :\\t%p\", str, 15, int, line, addr");
+			if (printf("printf    :\tstr :\t|%50s|\n\t\tint :\t|%*d|\n\t\tline :\t|%u|\n\t\taddr :\t|%p|\n", str[i], 15, nb[i], unb[i], str[i]) == ft_printf("ft_printf :\tstr :\t|%50s|\n\t\tint :\t|%*d|\n\t\tline :\t|%u|\n\t\taddr :\t|%p|\n", str[i], 15, nb[i], unb[i], str[i]))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing(":\\tint\\t: |%d|\\n\\t\\tuint\\t:|%u|\\n\\t\\txint\\t: |%x|\\n\\t\\tXint\\t: |%X|\\n\", int, uint, uint, uint");
+			if (printf("printf    :\tint\t: |%d|\n\t\tuint\t:|%u|\n\t\txint\t: |%x|\n\t\tXint\t: |%X|\n", nb[i], unb[i], unb[i], unb[i]) == ft_printf("ft_printf :\tint\t: |%d|\n\t\tuint\t:|%u|\n\t\txint\t: |%x|\n\t\tXint\t: |%X|\n", nb[i], unb[i], unb[i], unb[i]))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing(":\\tint\\t: |%.54d|\\n\\t\\tuint\\t:|%u|\\n\\t\\txint\\t: |%x|\\n\\t\\tXint\\t: |%X|\\n\", int, uint, uint, uint");
+			if (printf("printf    :\tint\t: |%.54d|\n\t\tuint\t:|%u|\n\t\txint\t: |%x|\n\t\tXint\t: |%X|\n", nb[i], unb[i], unb[i], unb[i]) == ft_printf("ft_printf :\tint\t: |%.54d|\n\t\tuint\t:|%u|\n\t\txint\t: |%x|\n\t\tXint\t: |%X|\n", nb[i], unb[i], unb[i], unb[i]))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
 		i = 0;
 		while (i < 20)
 		{
 			tested++;
 			print_testing("str :\\t%50s\\nint :\\t%*d\nline :\\t%u\\naddr :\\t%*p%c\", str, 15, int, line, addr, @");
 			if (printf("printf    :\tstr :\t|%50s|\n\t\tint :\t|%*d|\n\t\tline :\t|%u|\n\t\taddr :\t|%*p||%c|\n", str[i], 15, nb[i], unb[i], -9, str[i], '@') == ft_printf("ft_printf :\tstr :\t|%50s|\n\t\tint :\t|%*d|\n\t\tline :\t|%u|\n\t\taddr :\t|%*p||%c|\n", str[i], 15, nb[i], unb[i], -9,str[i], '@'))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("str :\\t%.50s\\nint :\\t%.54d\nline :\\t%u\\naddr :\\t%*p\", str, 15, int, unb, addr");
+			if (printf("printf    :\tstr :\t|%.50s|\n\t\tint :\t|%.54d|\n\t\tline :\t|%u|\n\t\taddr :\t|%*p|\n", str[i], 15, nb[i], -98, str[i]) == ft_printf("ft_printf :\tstr :\t|%.50s|\n\t\tint :\t|%.54d|\n\t\tline :\t|%u|\n\t\taddr :\t|%*p|\n", str[i], 15, nb[i], -98, str[i]))
 				print_ok(&testok);
 			else
 				print_error(&testko);
