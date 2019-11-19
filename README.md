@@ -2,9 +2,9 @@
 
 To use this test, clone it in your repo, compile with your libftprintf.a
 
-Default test : `gcc -Wall -Wextra test.c -g3 libftprintf.a && ./a.out`
+Default test : `gcc -Wall -Wextra -Wextra test.c -g3 libftprintf.a && ./a.out`
 
-exemple all test : `gcc -Wall -Wextra test.c -g3 libftprintf.a && ./a.out a`
+exemple all test : `gcc -Wall -Wextra -Wextra test.c -g3 libftprintf.a && ./a.out a`
 
 to check differents option run with whose differents av[1] 
 
