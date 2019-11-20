@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/19 16:45:22 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 14:19:14 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -208,7 +208,7 @@ int		main(int ac, char **av)
 	
 	char	*str[20] = {"", NULL, "0", ft_random_str(10), ft_random_str(10), ft_random_str(10), ft_random_str(10), ft_random_str(12), ft_random_str(18), ft_random_str(3), ft_random_str(53), ft_random_str(16), ft_random_str(17), ft_random_str(1), ft_random_str(20), ft_random_str(10), ft_random_str(54), ft_random_str(0), ft_random_str(100), ft_random_str(50)};
 	unsigned int	unb[20] = {0, UINT_MAX, ft_random_unb(1), ft_random_unb(1),ft_random_unb(1),ft_random_unb(1), ft_random_unb(2), ft_random_unb(3), ft_random_unb(4), ft_random_unb(5), ft_random_unb(6), ft_random_unb(7), ft_random_unb(8), ft_random_unb(9), ft_random_unb(10), ft_random_unb(11), ft_random_unb(12), ft_random_unb(13), ft_random_unb(14), ft_random_unb(15)};
-	int		nb[20] = {0, INT_MIN, INT_MAX, ft_random_nb(1), ft_random_nb(2), ft_random_nb(3), ft_random_nb(3),ft_random_nb(3),ft_random_nb(3),ft_random_nb(3),ft_random_nb(4), ft_random_nb(5), ft_random_nb(6), ft_random_nb(7), ft_random_nb(8), ft_random_nb(9), ft_random_nb(10), ft_random_nb(11), ft_random_nb(12)};
+	int		nb[20] = {0, INT_MIN, INT_MAX, -1, ft_random_nb(2), ft_random_nb(3), ft_random_nb(3),ft_random_nb(3),ft_random_nb(3),ft_random_nb(3),ft_random_nb(4), ft_random_nb(5), ft_random_nb(6), ft_random_nb(7), ft_random_nb(8), ft_random_nb(9), ft_random_nb(10), ft_random_nb(11), ft_random_nb(12)};
 
 	if(ac == 1 || ft_c_in_str('a', av[1]))
 	{dprintf(1, ">--------------- CLASSIC TEST ---------------<\n\n");
@@ -804,6 +804,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
+	print_testing("\"|%s|\\n\", \"\"");
+	if (printf("printf    :\t|%s|\n", "") == ft_printf("ft_printf :\t|%s|\n", ""))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
 	print_testing("\"|%.15s|\\n\", bonjour");
 	if (printf("printf    :\t|%.15s|\n", "bonjour") == ft_printf("ft_printf :\t|%.15s|\n", "bonjour"))
 		print_ok(&testok);
@@ -1132,6 +1139,20 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
+	print_testing("\"|%p|\\n\", (void *)-1");
+	if (printf("printf    :\t|%p|\n", (void *)-1) == ft_printf("ft_printf :\t|%p|\n", (void *)-1))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%p|\\n\", (void*)ULONG_MAX)");
+	if (printf("printf    :\t|%p|\n", (void*)ULONG_MAX) == ft_printf("ft_printf :\t|%p|\n", (void*)ULONG_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
 	print_testing("\"|%p|\\n\", 0");
 	if (printf("printf    :\t|%p|\n", "monais monaie mauney") == ft_printf("ft_printf :\t|%p|\n", "monais monaie mauney"))
 		print_ok(&testok);
@@ -1359,6 +1380,17 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 			print_error(&testko);
 		i++;
 	}
+	i = 0;
+	while (i < 20)
+	{
+		tested++;
+		print_testing("\"%s\",  random");
+		if (printf("%s", str[i]) == ft_printf("%s", str[i]))
+			print_ok(&testok);
+		else
+			print_error(&testko);
+		i++;
+	}
 
 	i = 0;
 	while (i < 20)
@@ -1366,6 +1398,18 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		tested++;
 		print_testing("\"|%.54s|\\n\",  random");
 		if (printf("printf    :\t|%.54s|\n", str[i]) == ft_printf("ft_printf :\t|%.54s|\n", str[i]))
+			print_ok(&testok);
+		else
+			print_error(&testko);
+		i++;
+	}
+
+	i = 0;
+	while (i < 20)
+	{
+		tested++;
+		print_testing("\"|%.0s|\\n\",  random");
+		if (printf("printf    :\t|%.0s|\n", str[i]) == ft_printf("ft_printf :\t|%.0s|\n", str[i]))
 			print_ok(&testok);
 		else
 			print_error(&testko);
@@ -1643,6 +1687,18 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	while (i < 20)
 	{
 		tested++;
+		print_testing("\"|%010.0d|\\n\", random");
+		if (printf("|%010.0d|\n", nb[i]) == ft_printf("|%010.0d|\n", nb[i]))
+			print_ok(&testok);
+		else
+			print_error(&testko);
+		i++;
+	}
+
+	i = 0;
+	while (i < 20)
+	{
+		tested++;
 		print_testing("\"|%54.0d|\\n\", random");
 		if (printf("printf    :\t|%54.0d|\n", nb[i]) == ft_printf("ft_printf :\t|%54.0d|\n", nb[i]))
 			print_ok(&testok);
@@ -1662,20 +1718,7 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 			print_error(&testko);
 		i++;
 	}
-
-	i = 0;
-	while (i < 20)
-	{
-		tested++;
-		print_testing("\"|%0.0d|\\n\", random");
-		if (printf("printf    :\t|%0.0d|\n", nb[i]) == ft_printf("ft_printf :\t|%0.0d|\n", nb[i]))
-			print_ok(&testok);
-		else
-			print_error(&testko);
-		i++;
-	}
-
-	i = 0;
+	
 	while (i < 20)
 	{
 		tested++;
@@ -1686,6 +1729,81 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 			print_error(&testko);
 		i++;
 	}}
+
+	if(ft_c_in_str('i', av[1])|| ft_c_in_str('a', av[1]))
+	{
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("\"%3i\", random");
+			if ((printf("|%-3i|\n", nb[i])) == (ft_printf("|%-3i|\n", nb[i])))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("\"%01i\", random");
+			if ((printf("|%01i|\n", nb[i])) == (ft_printf("|%01i\n|", nb[i])))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("\"%01i\", random");
+			if ((printf("|%01i|\n", nb[i])) == (ft_printf("|%01i\n|", nb[i])))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("\"%10.1i\", random");
+			if ((printf("|%2.1i|\n", nb[i])) == (ft_printf("|%2.1i\n|", nb[i])))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("\"%1.10i\", random");
+			if ((printf("|%1.10i|\n", nb[i])) == (ft_printf("|%1.10i|\n", nb[i])))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+
+		i = 0;
+		while (i < 20)
+		{
+			tested++;
+			print_testing("\"%1.10i\", random");
+			if ((printf("|%1.10i|\n", nb[i])) == (ft_printf("|%1.10i\n|", nb[i])))
+				print_ok(&testok);
+			else
+				print_error(&testko);
+			i++;
+		}
+	}
 
 	if(ft_c_in_str('u', av[1])|| ft_c_in_str('a', av[1]))
 {
