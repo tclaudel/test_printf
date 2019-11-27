@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 10:31:00 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/27 11:24:42 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -799,6 +799,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	tested++;
 	print_testing("\"|%s|\\n\", bonjour");
 	if (printf("printf    :\t|%s|\n", "bonjour") == ft_printf("ft_printf :\t|%s|\n", "bonjour"))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%s.|\\n\", bonjour");
+	if (printf("printf    :\t|%s.|\n", "bonjour") == ft_printf("ft_printf :\t|%s.|\n", "bonjour"))
 		print_ok(&testok);
 	else
 		print_error(&testko);
