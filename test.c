@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/27 11:24:42 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/02 11:27:18 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -1125,8 +1125,15 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
-	print_testing("\"|%15p|\\n\", \"bonjour\"");
-	if (printf("printf    :\t|%15p|\n", "bonjour") == ft_printf("ft_printf :\t|%15p|\n", "bonjour"))
+	print_testing("\"|%15p|\\n\", NULL");
+	if (printf("printf    :\t|%15p|\n", NULL) == ft_printf("ft_printf :\t|%15p|\n", NULL))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%15s.-*0|\\n\", \"bon-jour\"");
+	if (printf("printf    :\t|%15s.-*0|\n", "bon-jour") == ft_printf("ft_printf :\t|%15s.-*0|\n", "bon-jour"))
 		print_ok(&testok);
 	else
 		print_error(&testko);
