@@ -1677,7 +1677,7 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	while (i < 20)
 	{
 		tested++;
-		print_testing("\"|%*.0d|\\n\", 10, random");
+		print_testing("\"|%0.*d|\\n\", 10, random");
 		if (printf("printf    :\t|%0.*d|\n", 10, nb[i]) == ft_printf("ft_printf :\t|%0.*d|\n", 10,nb[i]))
 			print_ok(&testok);
 		else
